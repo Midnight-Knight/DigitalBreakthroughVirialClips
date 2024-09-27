@@ -46,7 +46,7 @@ export default function Template({ children }: Props): ReactNode {
             RealityFirst
           </Text>
           <Flex gap="0.5rem" direction={'column'}>
-            <Link href={'/'}>
+            <Link href={'/'} underline="none">
               <Button
                 size="md"
                 {...styleButton}
@@ -55,16 +55,16 @@ export default function Template({ children }: Props): ReactNode {
                 Главная
               </Button>
             </Link>
-            <Link href={'/download'}>
+            <Link href={'/download'} underline="none">
               <Button
                 size="md"
                 {...styleButton}
                 variant={pathname === '/download' ? 'primary' : 'tertiary'}
                 cl={pathname === '/download' ? theme.colors.base['50'] : theme.colors.primary['200']}>
-                Загрузка
+                Обработка видео
               </Button>
             </Link>
-            <Link href={'/clips'}>
+            <Link href={'/clips'} underline="none">
               <Button
                 size="md"
                 {...styleButton}

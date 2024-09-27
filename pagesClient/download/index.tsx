@@ -1,8 +1,35 @@
 'use client';
-import { Text, usePrismaneTheme } from '@prismane/core';
+import { Box, Flex, SegmentedField, Text, usePrismaneTheme } from '@prismane/core';
+import { useState } from 'react';
+import ApiBlock from '@/components/API';
 
 export default function DownloadPage() {
   const { theme } = usePrismaneTheme();
+  const [value, setValue] = useState('form');
 
-  return <Text cl={theme.colors.base['50']}>Download</Text>;
+  const style = {
+    w: '100%',
+    gap: '3rem',
+    pt: '6rem',
+    p: '3rem',
+  };
+
+  return (
+    <Flex {...style} direction="column" justify={'start'} align={'start'}>
+      <SegmentedField
+        size={'md'}
+        placeholder="Выбор вариант обработки видео"
+        label="Выбор вариант обработки видео:"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        options={[
+          { element: 'Форма', value: 'form' },
+          { element: 'API', value: 'api' },
+        ]}
+      />
+      {value === 'form' ? <Box w={'100%'} mih={'70vh'} bg={theme.colors.base['800']} br={'base'}></Box> : <ApiBlock />}
+    </Flex>
+  );
 }
+
+// <Box w={'100%'} mih={'70vh'} bg={theme.colors.base['800']} br={'base'}></Box>
