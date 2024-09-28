@@ -2,10 +2,13 @@
 import { Box, Flex, SegmentedField, Text, usePrismaneTheme } from '@prismane/core';
 import { useState } from 'react';
 import ApiBlock from '@/components/API';
+import FormDownload from '@/components/FormDownload';
+import Editor from '@/components/Editor';
 
 export default function DownloadPage() {
   const { theme } = usePrismaneTheme();
   const [value, setValue] = useState('form');
+  const [video, setVideo] = useState<File | null>(null);
 
   const style = {
     w: '100%',
@@ -27,7 +30,8 @@ export default function DownloadPage() {
           { element: 'API', value: 'api' },
         ]}
       />
-      {value === 'form' ? <Box w={'100%'} mih={'70vh'} bg={theme.colors.base['800']} br={'base'}></Box> : <ApiBlock />}
+      {value === 'api' && <ApiBlock />}
+      {value === 'form' && (video ? <Editor file={video} /> : <FormDownload setVideo={setVideo} />)}
     </Flex>
   );
 }
