@@ -54,7 +54,8 @@ export default function ApiBlock() {
             <Text as={'h4'}>Ответ в случае успеха</Text>
             <Box w={'100%'} p={'8px'} bg={theme.colors.base['700']} br={'base'}>
               <code style={{ whiteSpace: 'pre-line' }}>
-                {'{\nㅤvideo: string,\n' +
+                {'{\nㅤstatus: number,\n' +
+                  'ㅤvideo: string,\n' +
                   'ㅤclips: {\n' +
                   'ㅤㅤurl: string,\n' +
                   'ㅤㅤdynamic: number,\n' +
