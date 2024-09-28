@@ -1,4 +1,4 @@
-import { AspectRatio, Button, Center, Flex, NumberField, Radio, Text, usePrismaneTheme } from '@prismane/core';
+import { AspectRatio, Button, Center, Flex, NumberField, Radio, Text, TextField, usePrismaneTheme } from '@prismane/core';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 interface Props {
@@ -9,10 +9,11 @@ export default function Editor({ file }: Props) {
   const { theme } = usePrismaneTheme();
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [duration, setDuration] = useState<number | null>(null);
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(2);
   const [valueRadio, setValueRadio] = useState<string>('true');
   const [time, setTime] = useState<number>(15);
   const [timeRadio, setTimeRadio] = useState<string>('true');
+  const [input, setInput] = useState(file.name);
 
   useEffect(() => {
     if (file && videoRef.current) {
@@ -36,8 +37,8 @@ export default function Editor({ file }: Props) {
   }, [file]);
 
   useEffect(() => {
-    if (value <= 0) {
-      setValue(1);
+    if (value <= 1 && value < 20) {
+      setValue(2);
     }
   }, [value]);
 
@@ -67,9 +68,10 @@ export default function Editor({ file }: Props) {
           </Center>
         </AspectRatio>
         <Flex w={'25%'} direction={'column'} justify={'start'} align={'start'} gap={'1rem'} pt={'2rem'}>
-          <Text as={'h4'} style={{ whiteSpace: 'break-word', overflowWrap: 'break-word', wordBreak: 'break-all' }}>
-            Название: {file.name}
-          </Text>
+          <Flex direction={'column'} w={'100%'} gap={'0.5rem'} justify={'start'} align={'start'}>
+            <Text as={'h4'}>Название</Text>
+            <TextField value={input} onChange={(e) => setInput(e.target.value)} placeholder="Введите название" />
+          </Flex>
           {duration && <Text as={'h4'}>Длительность: {Math.floor(duration)} сек</Text>}
           <Flex direction={'column'} w={'100%'} gap={'0.5rem'} justify={'start'} align={'start'}>
             <Text as={'h4'}>Количество клипов</Text>

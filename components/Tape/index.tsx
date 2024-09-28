@@ -1,11 +1,27 @@
-import { Flex, Grid, Text } from '@prismane/core';
+import { Flex, Grid, SegmentedField, Text } from '@prismane/core';
 import Typewriter from 'typewriter-effect';
+import HistoryBlock from '@/components/historyBlock';
+import { useState } from 'react';
 
 export default function Tape() {
-  const list = [];
+  const [page, setPage] = useState(1);
+  const list = ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'];
+  const p = Math.ceil(list.length / 10);
+  const array = [];
+  for (let i = 0; i < p; i++) {
+    array.push({ element: String(i + 1), value: String(i + 1) });
+  }
 
   return (
-    <Flex direction={'column'} justify={'center'} align={'center'} gap={'2rem'} w={'100%'} mih={'80vh'}>
+    <Flex
+      direction={'column'}
+      justify={list.length === 0 ? 'center' : 'start'}
+      align={'center'}
+      gap={'2rem'}
+      w={'100%'}
+      mih={'80vh'}
+      pt={'5rem'}
+      pb={'1rem'}>
       {list.length === 0 ? (
         <Text as={'h1'}>
           <Typewriter
@@ -19,7 +35,25 @@ export default function Tape() {
           />
         </Text>
       ) : (
-        <Grid templateColumns={2} gap={'1rem'} w={'100%'}></Grid>
+        <>
+          <SegmentedField
+            size={'md'}
+            placeholder="Страницы"
+            label="Страницы"
+            value={String(page)}
+            onChange={(e) => setPage(Number(e.target.value))}
+            options={array}
+          />
+          <Grid templateColumns={2} gap={'1rem'} w={'100%'}>
+            {list
+              .filter((elem, index) => index >= 10 * (page - 1) && index < 10 * page)
+              .map((item, i) => (
+                <Grid.Item>
+                  <HistoryBlock key={'history_block_' + i} />
+                </Grid.Item>
+              ))}
+          </Grid>
+        </>
       )}
     </Flex>
   );

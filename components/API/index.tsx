@@ -13,6 +13,7 @@ export default function ApiBlock() {
             {'const formData = new FormData();\n' +
               "          formData.append('video', file); // видео\n" +
               "          formData.append('quantityClips', quantity); // кол-во клипов\n" +
+              "          formData.append('secondsClips', seconds); // кол-во клипов\n" +
               "          const response = await fetch(url + '?title=' + file.name, {\n" +
               "          ㅤmethod: 'POST',\n" +
               '          ㅤbody: formData,\n' +
@@ -25,7 +26,9 @@ export default function ApiBlock() {
           <Flex w={'100%'} direction={'column'} gap={'0.25rem'}>
             <Text as={'h4'}>Данные FormData</Text>
             <Box w={'100%'} p={'8px'} bg={theme.colors.base['700']} br={'base'}>
-              <code style={{ whiteSpace: 'pre-line' }}>{'{\nㅤvideo: File,\n' + 'ㅤquantityClips: number | null,\n}'}</code>
+              <code style={{ whiteSpace: 'pre-line' }}>
+                {'{\nㅤvideo: File,\n' + 'ㅤquantityClips: number | null,\n' + 'ㅤsecondsClips: number | null,\n}'}
+              </code>
             </Box>
           </Flex>
           <Flex w={'100%'} direction={'column'} self={'stretch'} gap={'0.25rem'}>
@@ -50,7 +53,27 @@ export default function ApiBlock() {
           <Flex w={'100%'} direction={'column'} gap={'0.25rem'}>
             <Text as={'h4'}>Ответ в случае успеха</Text>
             <Box w={'100%'} p={'8px'} bg={theme.colors.base['700']} br={'base'}>
-              <code style={{ whiteSpace: 'pre-line' }}>{'{\nㅤvideo: File,\n' + 'ㅤquantityClips: number | null,\n}'}</code>
+              <code style={{ whiteSpace: 'pre-line' }}>
+                {'{\nㅤvideo: string,\n' +
+                  'ㅤclips: {\n' +
+                  'ㅤㅤurl: string,\n' +
+                  'ㅤㅤdynamic: number,\n' +
+                  'ㅤㅤtranscriptions: {\n' +
+                  'ㅤㅤㅤstart: number,\n' +
+                  'ㅤㅤㅤend: number,\n' +
+                  'ㅤㅤㅤtext: string,\n' +
+                  'ㅤㅤ}[],\nㅤ}[],\n' +
+                  'ㅤtranscriptions: {\n' +
+                  'ㅤㅤstart: number,\n' +
+                  'ㅤㅤend: number,\n' +
+                  'ㅤㅤtext: string,\n' +
+                  'ㅤ}[],\n' +
+                  'ㅤdynamics: {\n' +
+                  'ㅤㅤstart: number,\n' +
+                  'ㅤㅤend: number,\n' +
+                  'ㅤㅤdynamics: number,\n' +
+                  'ㅤ}[]\n}'}
+              </code>
             </Box>
           </Flex>
         </Flex>

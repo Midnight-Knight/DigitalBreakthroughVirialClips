@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ffmpeg/core": "^0.12.6",
+    "@ffmpeg/ffmpeg": "^0.12.10",
+    "@ffmpeg/util": "^0.12.1",
     "@fontsource/inter": "^5.1.0",
     "@phosphor-icons/react": "^2.1.7",
     "@prismane/core": "^1.6.0",
