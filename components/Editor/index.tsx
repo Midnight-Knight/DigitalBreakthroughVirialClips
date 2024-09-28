@@ -1,4 +1,4 @@
-import { AspectRatio, Center, Flex, NumberField, Radio, Text, usePrismaneTheme } from '@prismane/core';
+import { AspectRatio, Button, Center, Flex, NumberField, Radio, Text, usePrismaneTheme } from '@prismane/core';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 interface Props {
@@ -67,7 +67,9 @@ export default function Editor({ file }: Props) {
           </Center>
         </AspectRatio>
         <Flex w={'25%'} direction={'column'} justify={'start'} align={'start'} gap={'1rem'} pt={'2rem'}>
-          <Text as={'h4'}>Название: {file.name}</Text>
+          <Text as={'h4'} style={{ whiteSpace: 'break-word', overflowWrap: 'break-word', wordBreak: 'break-all' }}>
+            Название: {file.name}
+          </Text>
           {duration && <Text as={'h4'}>Длительность: {Math.floor(duration)} сек</Text>}
           <Flex direction={'column'} w={'100%'} gap={'0.5rem'} justify={'start'} align={'start'}>
             <Text as={'h4'}>Количество клипов</Text>
@@ -85,6 +87,18 @@ export default function Editor({ file }: Props) {
             </Radio.Group>
             <NumberField disabled={timeRadio === 'true'} value={time} onChange={(e) => setTime(Number(e.target.value))} />
           </Flex>
+          <Button
+            w={'100%'}
+            size="md"
+            variant="tertiary"
+            onClick={() => {
+              location.reload();
+            }}>
+            Очистить
+          </Button>
+          <Button w={'100%'} size="md" variant="primary" onClick={() => {}}>
+            Отправить
+          </Button>
         </Flex>
       </Flex>
     </Flex>
