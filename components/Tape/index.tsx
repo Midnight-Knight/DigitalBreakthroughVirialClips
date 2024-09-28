@@ -1,3 +1,4 @@
+'use client';
 import { Flex, Grid, SegmentedField, Text } from '@prismane/core';
 import Typewriter from 'typewriter-effect';
 import HistoryBlock from '@/components/historyBlock';
@@ -5,7 +6,7 @@ import { useState } from 'react';
 
 export default function Tape() {
   const [page, setPage] = useState(1);
-  const list = ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'];
+  const list: string[] = [];
   const p = Math.ceil(list.length / 10);
   const array = [];
   for (let i = 0; i < p; i++) {
@@ -48,8 +49,8 @@ export default function Tape() {
             {list
               .filter((elem, index) => index >= 10 * (page - 1) && index < 10 * page)
               .map((item, i) => (
-                <Grid.Item>
-                  <HistoryBlock key={'history_block_' + i} />
+                <Grid.Item key={'history_block_' + i}>
+                  <HistoryBlock />
                 </Grid.Item>
               ))}
           </Grid>

@@ -11,8 +11,6 @@ export default function AppPage() {
     cl: theme.colors.base['50'],
   };
 
-  const styleHeading = {};
-
   return (
     <Flex direction="column" p={'5rem'} justify={'center'} align={'center'} {...style}>
       <Center w={'100%'} h={'65%'}>
