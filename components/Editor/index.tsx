@@ -163,7 +163,7 @@ export default function Editor({ file }: Props) {
                       ? 'Обработка в модуле ML'
                       : clip.status === 'Ready'
                         ? 'Обработано'
-                        : 'Неизвестно/Ошибка'}
+                        : 'Отправляет на Backend'}
             </Text>
           </Flex>
         </Flex>
