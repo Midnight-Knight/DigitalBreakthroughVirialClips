@@ -5,8 +5,6 @@ export default async function createId(setFileId: Dispatch<SetStateAction<string
     method: 'GET',
   });
 
-  console.log(response);
-
   const { videoId } = await response.json();
   setFileId(videoId);
 }

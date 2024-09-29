@@ -150,6 +150,22 @@ export default function Editor({ file }: Props) {
             }}>
             Отправить
           </Button>
+          <Flex direction={'column'} w={'100%'} gap={'0.5rem'} justify={'start'} align={'start'}>
+            <Text as={'h4'}>
+              Статус:{' '}
+              {fileId === null
+                ? 'Ожидает отправки'
+                : clip === null
+                  ? 'Отправляет на Backend'
+                  : clip.status === 'DownloadingToBackend'
+                    ? 'Отправка в модуль ML'
+                    : clip.status === 'ProcessingInMl'
+                      ? 'Обработка в модуле ML'
+                      : clip.status === 'Ready'
+                        ? 'Обработано'
+                        : 'Неизвестно/Ошибка'}
+            </Text>
+          </Flex>
         </Flex>
       </Flex>
     </Flex>
