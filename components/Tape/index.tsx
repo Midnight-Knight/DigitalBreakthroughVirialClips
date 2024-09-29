@@ -2,16 +2,25 @@
 import { Flex, Grid, SegmentedField, Text } from '@prismane/core';
 import Typewriter from 'typewriter-effect';
 import HistoryBlock from '@/components/historyBlock';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import allId from '@/api/allId';
 
 export default function Tape() {
   const [page, setPage] = useState(1);
-  const list: string[] = [];
+  const [list, setList] = useState<string[]>([]);
   const p = Math.ceil(list.length / 10);
   const array = [];
   for (let i = 0; i < p; i++) {
     array.push({ element: String(i + 1), value: String(i + 1) });
   }
+
+  useEffect(() => {
+    allId(setList);
+  }, []);
+
+  useEffect(() => {
+    console.log(list);
+  }, [list]);
 
   return (
     <Flex
@@ -50,7 +59,7 @@ export default function Tape() {
               .filter((elem, index) => index >= 10 * (page - 1) && index < 10 * page)
               .map((item, i) => (
                 <Grid.Item key={'history_block_' + i}>
-                  <HistoryBlock />
+                  <HistoryBlock fileId={item} />
                 </Grid.Item>
               ))}
           </Grid>
